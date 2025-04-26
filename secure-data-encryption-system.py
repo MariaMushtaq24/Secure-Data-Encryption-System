@@ -32,6 +32,12 @@ st.markdown(
         color: #222222;
     }
 
+    /* Fix st.write, st.text, st.success, st.info, etc. */
+    .stMarkdown p, .stAlert p {
+        color: #222222 !important;
+        font-weight: 500;
+    }
+
     /* Button styles */
     .stButton>button {
         background-color: #4FC3F7;
@@ -92,6 +98,9 @@ st.markdown(
             font-weight: 600 !important;
         }
         h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
+            color: #111111 !important;
+        }
+        .stMarkdown p, .stAlert p {
             color: #111111 !important;
         }
 
