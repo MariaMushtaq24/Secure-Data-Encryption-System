@@ -191,8 +191,8 @@ def login_page():
     lockout_remaining = is_lockout_active()
     if lockout_remaining > 0:
         st.error(f"🚫 Locked out due to too many failed attempts! Try again in {lockout_remaining} seconds.")
-        return  # <- immediately exit if locked
-
+        st.stop()  # 👉 forcefully stop everything if locked out (important)
+    
     login_pass = st.text_input("Enter Master Password:", type="password")
 
     if st.button("Login"):
@@ -201,7 +201,8 @@ def login_page():
             st.session_state.authenticated = True
             st.session_state.lockout_time = None  # Clear lockout after successful login
             st.success("✅ Reauthenticated successfully!")
-            st.rerun()
+            time.sleep(5)  # 👉 optional short pause to show success message
+            st.rerun()  # 👉 important: rerun to refresh session properly
         else:
             st.session_state.failed_attempts += 1
             st.error(f"❌ Incorrect master password! Attempts left: {3 - st.session_state.failed_attempts}")
@@ -209,7 +210,8 @@ def login_page():
             if st.session_state.failed_attempts >= 3:
                 st.session_state.lockout_time = time.time()
                 st.warning("🚫 Too many failed attempts. Locking out for 30 seconds.")
-                st.rerun()
+                time.sleep(1)  # 👉 small pause before rerun
+                st.rerun()  # 👉 important: rerun immediately after locking out
 
 # Sidebar Navigation
 st.sidebar.title("🧭 Navigation")
