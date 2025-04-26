@@ -61,6 +61,35 @@ st.markdown(
         margin: 1rem;
         padding: 1rem;
     }
+
+    /* Mobile-specific adjustments */
+    @media screen and (max-width: 768px) {
+        /* For mobile devices */
+        html, body, [class*="css"] {
+            color: #333333 !important; /* Darken text for better contrast */
+        }
+
+        .stApp {
+            background: linear-gradient(to bottom right, #e0f7fa, #ffffff) !important; /* Maintain background */
+        }
+
+        .stTextInput>div>div>input,
+        .stTextArea>div>div>textarea {
+            background: rgba(255, 255, 255, 0.8) !important; /* Increase opacity for better contrast */
+            color: #333333 !important; /* Ensure dark text on mobile */
+        }
+
+        /* Button styles */
+        .stButton>button {
+            padding: 0.6rem 1.2rem !important; /* Slightly larger buttons on mobile */
+        }
+
+        /* Sidebar */
+        .css-1d391kg {
+            padding: 1rem !important;
+            margin: 1rem 0 !important;
+        }
+    }
     </style>
     """,
     unsafe_allow_html=True
