@@ -12,7 +12,7 @@ st.set_page_config(page_title="Secure Data Storage", page_icon="🛡️")
 st.markdown(
     """
     <style>
-    /* Apply background gradient and frosted effect */
+    /* Background and frosted glass effect */
     .stApp {
         background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
         background-attachment: fixed;
@@ -21,10 +21,15 @@ st.markdown(
         -webkit-backdrop-filter: blur(6px);
     }
 
-    /* Text color */
+    /* Global text color */
     html, body, [class*="css"] {
         color: #333333;
         font-family: 'Poppins', sans-serif;
+    }
+
+    /* Fix for all headings */
+    h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
+        color: #222222;
     }
 
     /* Button styles */
@@ -65,7 +70,6 @@ st.markdown(
 
     /* Mobile-specific adjustments */
     @media screen and (max-width: 768px) {
-        /* Light overlay on mobile for better text visibility */
         .stApp::before {
             content: "";
             position: absolute;
@@ -82,10 +86,13 @@ st.markdown(
             z-index: 1;
         }
 
-        /* Keep text black on mobile */
+        /* Make sure text and headings stay black on mobile */
         html, body, [class*="css"] {
             color: #111111 !important;
             font-weight: 600 !important;
+        }
+        h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
+            color: #111111 !important;
         }
 
         .stTextInput>div>div>input,
