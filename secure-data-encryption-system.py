@@ -109,13 +109,20 @@ st.markdown(
     font-weight: bold;
 }
 
-        .stTextInput>div>div>input,
-        .stTextArea>div>div>textarea {
-            background: rgba(255, 255, 255, 0.95) !important;
-            color: #111111 !important;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
+        .stTextInput input,
+.stTextArea textarea {
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: #111111 !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Fix placeholder text color too */
+.stTextInput input::placeholder,
+.stTextArea textarea::placeholder {
+    color: #111111 !important;
+    opacity: 1 !important; /* Make sure placeholder is fully visible */
+}
 
         .stButton>button {
             padding: 0.7rem 1.4rem !important;
