@@ -5,8 +5,6 @@ import json
 import os
 from cryptography.fernet import Fernet
 
-import streamlit as st
-
 # Set page configuration first
 st.set_page_config(page_title="Secure Data Storage", page_icon="🛡️")
 
@@ -14,40 +12,71 @@ st.set_page_config(page_title="Secure Data Storage", page_icon="🛡️")
 st.markdown(
     """
     <style>
+    /* Apply background gradient and frosted effect */
     .stApp {
-        background-color: #B2DFDB;  # Light Teal background
-        color: #87CEEB;  # Sky Blue text color
+        background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+        background-attachment: fixed;
+        min-height: 100vh;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
     }
+
+    /* Text color */
+    html, body, [class*="css"] {
+        color: #333333;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Button styles */
     .stButton>button {
-        background-color: #87CEEB;  # Sky Blue buttons
+        background-color: #4FC3F7;
         color: white;
+        border-radius: 10px;
+        padding: 0.5rem 1rem;
+        font-weight: bold;
+        transition: 0.3s;
     }
-    .stTextInput>div>div>input {
-        background-color: #E0FFFF;  # Light Sky Blue background for inputs
-        color: #87CEEB;  # Sky Blue text in inputs
-        border: 1px solid #87CEEB;  # Sky Blue border
+    .stButton>button:hover {
+        background-color: #29B6F6;
+        transform: scale(1.05);
     }
+
+    /* Input and Text Area styling */
+    .stTextInput>div>div>input,
     .stTextArea>div>div>textarea {
-        background-color: #E0FFFF;  # Light Sky Blue background for text areas
-        color: #87CEEB;  # Sky Blue text
-        border: 1px solid #87CEEB;  # Sky Blue border for text areas
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 10px;
+        padding: 0.5rem;
+        color: #333333;
+        font-weight: 500;
+        border: 1px solid #B2EBF2;
+    }
+
+    /* Sidebar styling */
+    .css-1d391kg {
+        background: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 10px;
+        margin: 1rem;
+        padding: 1rem;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Your Streamlit content
+# Streamlit Title
 st.title("🔒 Secure Data Encryption System")
 
 DATA_FILE = "data.json"
 
-# Initializing the Fernet key
+# Initialize Fernet cipher key
 if "cipher" not in st.session_state:
     KEY = Fernet.generate_key()
     st.session_state.cipher = Fernet(KEY)
 
-# Initializing states
+# Initialize session state
 if "stored_data" not in st.session_state:
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, "r") as f:
@@ -70,7 +99,7 @@ def save_data_to_file():
         json.dump(st.session_state.stored_data, f)
 
 def hash_passkey_pbkdf2(passkey):
-    salt = b'streamlit_salt'  # For demo. In production, we have to use random salt per user.
+    salt = b'streamlit_salt'
     return hashlib.pbkdf2_hmac('sha256', passkey.encode(), salt, 100000).hex()
 
 def encrypt_data(text):
@@ -130,8 +159,8 @@ def store_data_page():
 
 def retrieve_data_page():
     if not st.session_state.authenticated:
-        st.warning("🔒 Access restricted! Please login first.")
-        st.switch_page("Login")
+        login_page()
+        return
 
     st.subheader("🔍 Retrieve Your Data")
 
@@ -152,7 +181,7 @@ def retrieve_data_page():
                 if st.session_state.failed_attempts >= 3:
                     st.warning("🚫 Too many failed attempts! Redirecting to Login...")
                     st.session_state.authenticated = False
-                    st.experimental_rerun()
+                    st.rerun()
         else:
             st.error("⚠️ Both fields are required!")
 
@@ -167,12 +196,12 @@ def login_page():
     login_pass = st.text_input("Enter Master Password:", type="password")
 
     if st.button("Login"):
-        if login_pass == "admin123":  # Simple master password for demo
+        if login_pass == "admin123":
             st.session_state.failed_attempts = 0
             st.session_state.authenticated = True
             st.session_state.lockout_time = None
             st.success("✅ Reauthenticated successfully!")
-            st.experimental_rerun()
+            st.rerun()
         else:
             st.error("❌ Incorrect master password!")
             st.session_state.failed_attempts += 1
@@ -180,7 +209,7 @@ def login_page():
             if st.session_state.failed_attempts >= 3:
                 st.session_state.lockout_time = time.time()
                 st.warning("🚫 Too many failed attempts. Locking out for 30 seconds.")
-                st.experimental_rerun()
+                st.rerun()
 
 # Sidebar Navigation
 st.sidebar.title("🧭 Navigation")
@@ -192,9 +221,6 @@ if choice == "Home":
 elif choice == "Store Data":
     store_data_page()
 elif choice == "Retrieve Data":
-    if st.session_state.authenticated:
-        retrieve_data_page()
-    else:
-        login_page()
+    retrieve_data_page()
 elif choice == "Login":
     login_page()
