@@ -9,7 +9,6 @@ from cryptography.fernet import Fernet
 st.set_page_config(page_title="Secure Data Storage", page_icon="🛡️")
 
 # Add background color using CSS
-# Add background color using CSS
 st.markdown(
     """
     <style>
@@ -20,7 +19,6 @@ st.markdown(
         min-height: 100vh;
         backdrop-filter: blur(6px);
         -webkit-backdrop-filter: blur(6px);
-        position: relative; /* Needed for overlay trick */
     }
 
     /* Text color */
@@ -37,7 +35,6 @@ st.markdown(
         padding: 0.5rem 1rem;
         font-weight: bold;
         transition: 0.3s;
-        font-size: 1rem;
     }
     .stButton>button:hover {
         background-color: #29B6F6;
@@ -47,17 +44,18 @@ st.markdown(
     /* Input and Text Area styling */
     .stTextInput>div>div>input,
     .stTextArea>div>div>textarea {
-        background: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.6);
         border-radius: 10px;
         padding: 0.5rem;
         color: #333333;
         font-weight: 500;
         border: 1px solid #B2EBF2;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     /* Sidebar styling */
     .css-1d391kg {
-        background: rgba(255, 255, 255, 0.5) !important;
+        background: rgba(255, 255, 255, 0.4) !important;
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border-radius: 10px;
@@ -67,7 +65,7 @@ st.markdown(
 
     /* Mobile-specific adjustments */
     @media screen and (max-width: 768px) {
-        /* Create a light dark overlay for better contrast */
+        /* Light overlay on mobile for better text visibility */
         .stApp::before {
             content: "";
             position: absolute;
@@ -75,7 +73,7 @@ st.markdown(
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.03);
+            background: rgba(0, 0, 0, 0.02);
             z-index: 0;
         }
 
@@ -84,29 +82,30 @@ st.markdown(
             z-index: 1;
         }
 
+        /* Keep text black on mobile */
         html, body, [class*="css"] {
-            color: #111111 !important; /* Much darker text */
+            color: #111111 !important;
             font-weight: 600 !important;
         }
 
         .stTextInput>div>div>input,
         .stTextArea>div>div>textarea {
-            background: rgba(255, 255, 255, 0.95) !important; /* More solid white input */
+            background: rgba(255, 255, 255, 0.95) !important;
             color: #111111 !important;
             font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        /* Button styles */
         .stButton>button {
             padding: 0.7rem 1.4rem !important;
             font-size: 1.1rem !important;
         }
 
-        /* Sidebar */
         .css-1d391kg {
             padding: 1rem !important;
             margin: 1rem 0 !important;
-            background: rgba(255, 255, 255, 0.8) !important; /* stronger white */
+            background: rgba(255, 255, 255, 0.8) !important;
+            border-radius: 12px !important;
         }
     }
     </style>
