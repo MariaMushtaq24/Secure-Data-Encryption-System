@@ -9,43 +9,107 @@ from cryptography.fernet import Fernet
 st.set_page_config(page_title="Secure Data Storage", page_icon="🛡️")
 
 # Add background color using CSS
+# Add background color using CSS
 st.markdown(
     """
     <style>
-@media screen and (max-width: 768px) {
+    /* Apply background gradient and frosted effect */
+    .stApp {
+        background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+        background-attachment: fixed;
+        min-height: 100vh;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        position: relative; /* Needed for overlay trick */
+    }
+
+    /* Text color */
     html, body, [class*="css"] {
-        color: #111111 !important; /* Much darker text */
-        font-weight: 600 !important; /* Bolder for visibility */
+        color: #333333;
+        font-family: 'Poppins', sans-serif;
     }
 
-    .stApp::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.05); /* subtle dark overlay */
-        z-index: 0;
+    /* Button styles */
+    .stButton>button {
+        background-color: #4FC3F7;
+        color: white;
+        border-radius: 10px;
+        padding: 0.5rem 1rem;
+        font-weight: bold;
+        transition: 0.3s;
+        font-size: 1rem;
+    }
+    .stButton>button:hover {
+        background-color: #29B6F6;
+        transform: scale(1.05);
     }
 
-    .stApp > * {
-        position: relative;
-        z-index: 1;
-    }
-
+    /* Input and Text Area styling */
     .stTextInput>div>div>input,
     .stTextArea>div>div>textarea {
-        background: rgba(255, 255, 255, 0.9) !important; /* even stronger opacity */
-        color: #111111 !important;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 10px;
+        padding: 0.5rem;
+        color: #333333;
+        font-weight: 500;
+        border: 1px solid #B2EBF2;
     }
 
-    .stButton>button {
-        padding: 0.8rem 1.4rem !important; 
-        font-size: 1.1rem !important;
+    /* Sidebar styling */
+    .css-1d391kg {
+        background: rgba(255, 255, 255, 0.5) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 10px;
+        margin: 1rem;
+        padding: 1rem;
     }
-}
-</style>
+
+    /* Mobile-specific adjustments */
+    @media screen and (max-width: 768px) {
+        /* Create a light dark overlay for better contrast */
+        .stApp::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.03);
+            z-index: 0;
+        }
+
+        .stApp > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        html, body, [class*="css"] {
+            color: #111111 !important; /* Much darker text */
+            font-weight: 600 !important;
+        }
+
+        .stTextInput>div>div>input,
+        .stTextArea>div>div>textarea {
+            background: rgba(255, 255, 255, 0.95) !important; /* More solid white input */
+            color: #111111 !important;
+            font-weight: 600;
+        }
+
+        /* Button styles */
+        .stButton>button {
+            padding: 0.7rem 1.4rem !important;
+            font-size: 1.1rem !important;
+        }
+
+        /* Sidebar */
+        .css-1d391kg {
+            padding: 1rem !important;
+            margin: 1rem 0 !important;
+            background: rgba(255, 255, 255, 0.8) !important; /* stronger white */
+        }
+    }
+    </style>
     """,
     unsafe_allow_html=True
 )
