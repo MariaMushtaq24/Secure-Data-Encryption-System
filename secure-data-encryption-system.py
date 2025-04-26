@@ -91,19 +91,27 @@ st.markdown(
         color: #111111 !important;
     }
 
-    /* Specific fix for input fields' text and placeholder */
-    .stTextInput input,
-    .stTextArea textarea {
+      /* Fix for st.text_input and st.text_area text color */
+    input[type="text"],
+    input[type="password"],
+    textarea {
         color: #111111 !important;
-        background: rgba(255, 255, 255, 0.95) !important;
+        background-color: rgba(255, 255, 255, 0.9) !important;
         font-weight: 600 !important;
     }
 
-    .stTextInput input::placeholder,
-    .stTextArea textarea::placeholder {
+    /* Fix for placeholders inside inputs */
+    input[type="text"]::placeholder,
+    input[type="password"]::placeholder,
+    textarea::placeholder {
         color: #111111 !important;
         opacity: 1 !important;
         font-weight: 600 !important;
+    }
+
+    /* Fix surrounding container color if needed */
+    .stTextInput, .stTextArea {
+        background-color: rgba(255, 255, 255, 0.8) !important;
     }
 }
         .stButton>button {
