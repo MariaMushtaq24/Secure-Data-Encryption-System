@@ -12,85 +12,40 @@ st.set_page_config(page_title="Secure Data Storage", page_icon="🛡️")
 st.markdown(
     """
     <style>
-    /* Apply background gradient and frosted effect */
-    .stApp {
-        background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
-        background-attachment: fixed;
-        min-height: 100vh;
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-    }
-
-    /* Text color */
+@media screen and (max-width: 768px) {
     html, body, [class*="css"] {
-        color: #333333;
-        font-family: 'Poppins', sans-serif;
+        color: #111111 !important; /* Much darker text */
+        font-weight: 600 !important; /* Bolder for visibility */
     }
 
-    /* Button styles */
-    .stButton>button {
-        background-color: #4FC3F7;
-        color: white;
-        border-radius: 10px;
-        padding: 0.5rem 1rem;
-        font-weight: bold;
-        transition: 0.3s;
-    }
-    .stButton>button:hover {
-        background-color: #29B6F6;
-        transform: scale(1.05);
+    .stApp::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.05); /* subtle dark overlay */
+        z-index: 0;
     }
 
-    /* Input and Text Area styling */
+    .stApp > * {
+        position: relative;
+        z-index: 1;
+    }
+
     .stTextInput>div>div>input,
     .stTextArea>div>div>textarea {
-        background: rgba(255, 255, 255, 0.6);
-        border-radius: 10px;
-        padding: 0.5rem;
-        color: #333333;
-        font-weight: 500;
-        border: 1px solid #B2EBF2;
+        background: rgba(255, 255, 255, 0.9) !important; /* even stronger opacity */
+        color: #111111 !important;
     }
 
-    /* Sidebar styling */
-    .css-1d391kg {
-        background: rgba(255, 255, 255, 0.4) !important;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-radius: 10px;
-        margin: 1rem;
-        padding: 1rem;
+    .stButton>button {
+        padding: 0.8rem 1.4rem !important; 
+        font-size: 1.1rem !important;
     }
-
-    /* Mobile-specific adjustments */
-    @media screen and (max-width: 768px) {
-        /* For mobile devices */
-        html, body, [class*="css"] {
-            color: #333333 !important; /* Darken text for better contrast */
-        }
-
-        .stApp {
-            background: linear-gradient(to bottom right, #e0f7fa, #ffffff) !important; /* Maintain background */
-        }
-
-        .stTextInput>div>div>input,
-        .stTextArea>div>div>textarea {
-            background: rgba(255, 255, 255, 0.8) !important; /* Increase opacity for better contrast */
-            color: #333333 !important; /* Ensure dark text on mobile */
-        }
-
-        /* Button styles */
-        .stButton>button {
-            padding: 0.6rem 1.2rem !important; /* Slightly larger buttons on mobile */
-        }
-
-        /* Sidebar */
-        .css-1d391kg {
-            padding: 1rem !important;
-            margin: 1rem 0 !important;
-        }
-    }
-    </style>
+}
+</style>
     """,
     unsafe_allow_html=True
 )
