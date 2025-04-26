@@ -12,7 +12,7 @@ st.set_page_config(page_title="Secure Data Storage", page_icon="🛡️")
 st.markdown(
     """
     <style>
-    /* Background and frosted glass effect */
+    /* Background and frosted glass */
     .stApp {
         background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
         background-attachment: fixed;
@@ -21,18 +21,16 @@ st.markdown(
         -webkit-backdrop-filter: blur(6px);
     }
 
-    /* Global text color */
+    /* Global dark text for desktop */
     html, body, [class*="css"] {
         color: #333333;
         font-family: 'Poppins', sans-serif;
     }
-
-    /* Fix for all headings */
+    /* Headings dark on desktop */
     h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
         color: #222222;
     }
-
-    /* Fix st.write, st.text, st.success, st.info, etc. */
+    /* Text (st.write, st.text, st.success, etc) dark on desktop */
     .stMarkdown p, .stAlert p {
         color: #222222 !important;
         font-weight: 500;
@@ -52,7 +50,7 @@ st.markdown(
         transform: scale(1.05);
     }
 
-    /* Input and Text Area styling */
+    /* Input fields */
     .stTextInput>div>div>input,
     .stTextArea>div>div>textarea {
         background: rgba(255, 255, 255, 0.6);
@@ -64,7 +62,7 @@ st.markdown(
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    /* Sidebar styling */
+    /* Sidebar container */
     .css-1d391kg {
         background: rgba(255, 255, 255, 0.4) !important;
         backdrop-filter: blur(10px);
@@ -73,8 +71,13 @@ st.markdown(
         margin: 1rem;
         padding: 1rem;
     }
+    /* Sidebar title (h1 inside sidebar) */
+    .css-1d391kg h1 {
+        color: #333333;
+        font-weight: bold;
+    }
 
-    /* Mobile-specific adjustments */
+    /* --- Mobile Styles --- */
     @media screen and (max-width: 768px) {
         .stApp::before {
             content: "";
@@ -92,23 +95,27 @@ st.markdown(
             z-index: 1;
         }
 
-        /* Make sure text and headings stay black on mobile */
+        /* Global white text for mobile */
         html, body, [class*="css"] {
-            color: #111111 !important;
+            color: #ffffff !important;
             font-weight: 600 !important;
         }
+        /* Headings white on mobile */
         h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
-            color: #111111 !important;
+            color: #ffffff !important;
         }
+        /* Text (st.write, st.success, etc) white on mobile */
         .stMarkdown p, .stAlert p {
-            color: #111111 !important;
+            color: #ffffff !important;
         }
 
-    .css-1d391kg h1, h2 {
-    color: #333333;
-    font-weight: bold;
-}
+        /* Sidebar title white and bold on mobile */
+        .css-1d391kg h1 {
+            color: #ffffff !important;
+            font-weight: 900 !important;
+        }
 
+        /* Inputs adjust on mobile */
         .stTextInput>div>div>input,
         .stTextArea>div>div>textarea {
             background: rgba(255, 255, 255, 0.95) !important;
@@ -117,11 +124,13 @@ st.markdown(
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
+        /* Bigger buttons on mobile */
         .stButton>button {
             padding: 0.7rem 1.4rem !important;
             font-size: 1.1rem !important;
         }
 
+        /* Sidebar container adjust */
         .css-1d391kg {
             padding: 1rem !important;
             margin: 1rem 0 !important;
