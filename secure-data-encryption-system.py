@@ -74,12 +74,6 @@ st.markdown(
         padding: 1rem;
     }
 
-    /* Sidebar title */
-    .css-1d391kg h1 {
-        color: #333333;
-        font-weight: bold;
-    }
-
     /* Mobile-specific adjustments */
     @media screen and (max-width: 768px) {
         .stApp::before {
@@ -109,6 +103,11 @@ st.markdown(
         .stMarkdown p, .stAlert p {
             color: #111111 !important;
         }
+
+    .css-1d391kg h1, h2 {
+    color: #333333;
+    font-weight: bold;
+}
 
         .stTextInput>div>div>input,
         .stTextArea>div>div>textarea {
