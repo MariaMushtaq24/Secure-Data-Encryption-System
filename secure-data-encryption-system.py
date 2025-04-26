@@ -191,7 +191,7 @@ def login_page():
     lockout_remaining = is_lockout_active()
     if lockout_remaining > 0:
         st.error(f"🚫 Locked out due to too many failed attempts! Try again in {lockout_remaining} seconds.")
-        return
+        return  # <- immediately exit if locked
 
     login_pass = st.text_input("Enter Master Password:", type="password")
 
@@ -199,12 +199,12 @@ def login_page():
         if login_pass == "admin123":
             st.session_state.failed_attempts = 0
             st.session_state.authenticated = True
-            st.session_state.lockout_time = None
+            st.session_state.lockout_time = None  # Clear lockout after successful login
             st.success("✅ Reauthenticated successfully!")
             st.rerun()
         else:
-            st.error("❌ Incorrect master password!")
             st.session_state.failed_attempts += 1
+            st.error(f"❌ Incorrect master password! Attempts left: {3 - st.session_state.failed_attempts}")
 
             if st.session_state.failed_attempts >= 3:
                 st.session_state.lockout_time = time.time()
