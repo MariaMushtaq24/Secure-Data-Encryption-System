@@ -77,13 +77,12 @@ st.markdown(
     /* Mobile-specific adjustments */
 @media screen and (max-width: 768px) {
 
-    /* Make all normal text black */
+    /* Regular text color */
     html, body, [class*="css"] {
         color: #111111 !important;
         font-weight: 600 !important;
     }
 
-    /* Make heading texts black */
     h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
         color: #111111 !important;
     }
@@ -92,25 +91,21 @@ st.markdown(
         color: #111111 !important;
     }
 
-    /* Force Input fields text to black */
-    input[type="text"],
-    input[type="password"],
-    textarea {
+    /* Specific fix for input fields' text and placeholder */
+    .stTextInput input,
+    .stTextArea textarea {
         color: #111111 !important;
         background: rgba(255, 255, 255, 0.95) !important;
         font-weight: 600 !important;
     }
 
-    /* Force Placeholder text to black */
-    input[type="text"]::placeholder,
-    input[type="password"]::placeholder,
-    textarea::placeholder {
+    .stTextInput input::placeholder,
+    .stTextArea textarea::placeholder {
         color: #111111 !important;
         opacity: 1 !important;
         font-weight: 600 !important;
     }
 }
-
         .stButton>button {
             padding: 0.7rem 1.4rem !important;
             font-size: 1.1rem !important;
