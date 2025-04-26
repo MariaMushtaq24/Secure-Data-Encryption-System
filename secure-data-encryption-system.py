@@ -75,53 +75,40 @@ st.markdown(
     }
 
     /* Mobile-specific adjustments */
-    @media screen and (max-width: 768px) {
-        .stApp::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.02);
-            z-index: 0;
-        }
+@media screen and (max-width: 768px) {
 
-        .stApp > * {
-            position: relative;
-            z-index: 1;
-        }
+    /* Make all normal text black */
+    html, body, [class*="css"] {
+        color: #111111 !important;
+        font-weight: 600 !important;
+    }
 
-        /* Make sure text and headings stay black on mobile */
-        html, body, [class*="css"] {
-            color: #111111 !important;
-            font-weight: 600 !important;
-        }
-        h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
-            color: #111111 !important;
-        }
-        .stMarkdown p, .stAlert p {
-            color: #111111 !important;
-        }
+    /* Make heading texts black */
+    h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
+        color: #111111 !important;
+    }
 
-    .css-1d391kg h1, h2 {
-    color: #333333;
-    font-weight: bold;
-}
+    .stMarkdown p, .stAlert p {
+        color: #111111 !important;
+    }
 
-        .stTextInput input,
-.stTextArea textarea {
-    background: rgba(255, 255, 255, 0.95) !important;
-    color: #111111 !important;
-    font-weight: 600 !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
+    /* Force Input fields text to black */
+    input[type="text"],
+    input[type="password"],
+    textarea {
+        color: #111111 !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        font-weight: 600 !important;
+    }
 
-/* Fix placeholder text color too */
-.stTextInput input::placeholder,
-.stTextArea textarea::placeholder {
-    color: #111111 !important;
-    opacity: 1 !important; /* Make sure placeholder is fully visible */
+    /* Force Placeholder text to black */
+    input[type="text"]::placeholder,
+    input[type="password"]::placeholder,
+    textarea::placeholder {
+        color: #111111 !important;
+        opacity: 1 !important;
+        font-weight: 600 !important;
+    }
 }
 
         .stButton>button {
