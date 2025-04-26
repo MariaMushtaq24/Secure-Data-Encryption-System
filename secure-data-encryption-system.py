@@ -74,6 +74,12 @@ st.markdown(
         padding: 1rem;
     }
 
+    /* Sidebar title */
+    .css-1d391kg h1 {
+        color: #333333;
+        font-weight: bold;
+    }
+
     /* Mobile-specific adjustments */
     @media screen and (max-width: 768px) {
         .stApp::before {
