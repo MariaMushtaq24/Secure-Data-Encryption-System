@@ -64,6 +64,12 @@ st.markdown(
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
+    /* Styling the labels of text input and text area */
+    label {
+        color: #222222;
+        font-weight: 600;
+    }
+
     /* Sidebar styling */
     .css-1d391kg {
         background: rgba(255, 255, 255, 0.4) !important;
@@ -72,6 +78,12 @@ st.markdown(
         border-radius: 10px;
         margin: 1rem;
         padding: 1rem;
+    }
+
+    /* Sidebar title */
+    .css-1d391kg h1, .css-1d391kg h2 {
+        color: #333333;
+        font-weight: bold;
     }
 
     /* Mobile-specific adjustments */
@@ -92,23 +104,25 @@ st.markdown(
             z-index: 1;
         }
 
-        /* Make sure text and headings stay black on mobile */
+        /* Change text, heading, label and sidebar title colors to white */
         html, body, [class*="css"] {
-            color: #111111 !important;
+            color: #ffffff !important;
             font-weight: 600 !important;
         }
         h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
-            color: #111111 !important;
+            color: #ffffff !important;
         }
         .stMarkdown p, .stAlert p {
-            color: #111111 !important;
+            color: #ffffff !important;
+        }
+        label {
+            color: #ffffff !important;
+        }
+        .css-1d391kg h1, .css-1d391kg h2 {
+            color: #ffffff !important;
         }
 
-    .css-1d391kg h1, h2 {
-    color: #333333;
-    font-weight: bold;
-}
-
+        /* Inputs stay readable */
         .stTextInput>div>div>input,
         .stTextArea>div>div>textarea {
             background: rgba(255, 255, 255, 0.95) !important;
@@ -117,11 +131,13 @@ st.markdown(
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
+        /* Button adjustments */
         .stButton>button {
             padding: 0.7rem 1.4rem !important;
             font-size: 1.1rem !important;
         }
 
+        /* Sidebar box adjustments */
         .css-1d391kg {
             padding: 1rem !important;
             margin: 1rem 0 !important;
